@@ -86,20 +86,20 @@ class UsersController extends Controller
         return view ('pages/registrar', compact('usuario'));
     }
     public function update(Request $request){
-
+        
         $validator = Validator::make($request->all(),[
             'nick' => ['required', 'string'],
             'nombre' => ['required', 'string'],
             'password' => ['required', 'string', 'min:2'],
             'rol' => ['required', 'string'],
-            'correo' => ['required', 'string', 'email', 'max:255', 'unique:users']
+            'correo' => ['required', 'string', 'email', 'max:255']
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
             $old = $request;
             return view('pages/registrar',compact('old','errors'));
         }
-        dd("etr");
+        //dd("etr");
         $validaciones=['_'];
         $cont=1;
         for($i=65; $i<=90; $i++) {
@@ -116,17 +116,18 @@ class UsersController extends Controller
         }
         if ($value){
             //Si la validacion al inicio del nombre es correcta
-            $usuarioUpdate = User::find($request->nick);
-            $usuarioUpdate->Nick=$request->nick;
+           
+            $usuarioUpdate = User::find($request->nickold); 
             $usuarioUpdate->Nick=$request->nick;
             $usuarioUpdate->Nombre= $request->nombre;
-            $usuarioUpdate->	Apellidos=$request->apellidos;
+            $usuarioUpdate->Apellidos=$request->apellidos;
             $usuarioUpdate->Password=$request->password;
             $usuarioUpdate->Rol=$request->rol;
             $usuarioUpdate->Correo=$request->correo;
             $usuarioUpdate->update();
             $mensaje = 'Datos Actualizados';
-            return back()->with('mensaje', $mensaje);
+            $usuarios=User::all();
+            return redirect()->route('home');
         }else{
             $mensaje = 'El NICK no inicia con _ o con una letra';
             return back()->with('mensaje', $mensaje);

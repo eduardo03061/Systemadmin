@@ -16,6 +16,9 @@
                     <div class="card-body">
                             @if (isset($usuario))
                             <form method="POST" action="{{ route('users.update') }}">
+                            @if (session('mensaje'))
+                            {{$usuario->Nick=old('nick')}}
+                            @endif
                             @else
                                 <form method="POST" action="{{ route('guardar-user') }}">
                             @endif
@@ -23,9 +26,12 @@
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('NICK') }}</label>
-
+                                @if(isset($usuario->Nick))
+                                <input type="hidden" name="nickold" value="{{ $usuario->Nick }}">
+                                @endif
+                                
                                 <div class="col-md-6">
-                                    <input  type="text" class="form-control @error('nick') is-invalid @enderror" name="nick" value="@if (isset($usuario)){{$usuario->Nick}} @endif{{ old('nik') }}" required autocomplete="name" autofocus>
+                                    <input  type="text" class="form-control @error('nick') is-invalid @enderror" name="nick" value="@if (isset($usuario)){{$usuario->Nick}} @endif{{ old('nick') }}" required autocomplete="name" autofocus>
                                     @error('nick')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -88,7 +94,7 @@
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password" value="@if (isset($usuario)) {{ $usuario->Password}} @endif">
+                                    <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password" value="@if (isset($usuario)){{$usuario->Password}} @endif">
                                     <input type="checkbox" onclick="myFunction()">Show Password
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">

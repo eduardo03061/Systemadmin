@@ -41,16 +41,7 @@
                                             <form action="{{route('users.destroy',$usuario->Nick)}}" method="POST" name=deleteform >
                                                 @csrf
                                                 <input class="dropdown-item" type="button" onclick="pregunta()"  value="Eliminar">
-                                            </form>
-
-
-                                            <form action="#">
-                                                @csrf
-                                                <input class="dropdown-item" type="submit" value="Editar estado deF cuenta">
-                                            </form>
-
-
-
+                                            </form> 
                                     </div>
                                 </td>
                             </tr>
