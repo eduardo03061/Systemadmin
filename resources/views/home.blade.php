@@ -47,7 +47,9 @@
                             </tr>
 
                         @endforeach
-
+                        @if($usuarios instanceof \Illuminate\Pagination\LengthAwarePaginator )
+                            {{ $usuarios->links() }}
+                            @endif    
                         </tbody>
                     </table>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $usuarios=User::all();
+        $usuarios=User::paginate(10);
         return view('home', compact('usuarios'));
     }
 }
