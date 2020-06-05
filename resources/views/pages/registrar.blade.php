@@ -31,7 +31,7 @@
                                 @endif
                                 
                                 <div class="col-md-6">
-                                    <input  type="text" class="form-control @error('nick') is-invalid @enderror" name="nick" value="@if (isset($usuario)){{$usuario->Nick}} @endif{{ old('nick') }}" required autocomplete="name" autofocus>
+                                    <input  type="text" require class="form-control @error('nick') is-invalid @enderror" name="nick" value="@if (isset($usuario)){{$usuario->Nick}} @endif{{ old('nick') }}" required autocomplete="name" autofocus>
                                     @error('nick')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="nombre" value="@if (isset($usuario)){{$usuario->Nombre}} @endif{{ old('nombre') }}" required>
+                                    <input type="text" require class="form-control" name="nombre" value="@if (isset($usuario)){{$usuario->Nombre}} @endif{{ old('nombre') }}" required>
 
                                     @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="apellidos" value="@if (isset($usuario)){{$usuario->Apellidos}} @endif{{ old('apellidos') }}" required autocomplete="email">
+                                    <input type="text" require class="form-control" name="apellidos" value="@if (isset($usuario)){{$usuario->Apellidos}} @endif{{ old('apellidos') }}" required autocomplete="email">
 
 
                                 </div>
@@ -80,7 +80,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control " name="correo" required value="@if (isset($usuario)) {{$usuario->Correo}}  @endif">
+                                    <input type="email" require class="form-control " name="correo" required value="@if (isset($usuario)) {{$usuario->Correo}}  @endif">
 
                                     @error('correo')
                                     <span class="invalid-feedback" role="alert">
